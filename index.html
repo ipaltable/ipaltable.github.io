@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PalTable connects diners with restaurants hosting curated group dining events. Book your seat, choose dishes, and meet new pals around the table.">
+  <title>PalTable — Group dining, booked &amp; paid</title>
+  <style>
+    :root {
+      --orange: #e8713c;
+      --orange-dark: #c85a28;
+      --black: #1a1a1a;
+      --gray: #5c5c5c;
+      --cream: #faf8f5;
+      --white: #ffffff;
+      --shadow: 0 18px 50px rgba(26, 26, 26, 0.12);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--black);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { display: block; max-width: 100%; height: auto; }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 20;
+      background: rgba(250, 248, 245, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 72px;
+    }
+
+    .brand img { height: 34px; width: auto; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover { color: var(--orange); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: var(--orange);
+      color: var(--white);
+      box-shadow: 0 10px 24px rgba(232, 113, 60, 0.28);
+    }
+
+    .btn-primary:hover { background: var(--orange-dark); }
+
+    .btn-secondary {
+      background: var(--white);
+      color: var(--black);
+      border: 1px solid rgba(26, 26, 26, 0.12);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      padding: 120px 0 72px;
+    }
+
+    .hero-media,
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      background:
+        linear-gradient(180deg, rgba(250, 248, 245, 0.35) 0%, rgba(250, 248, 245, 0.15) 28%, rgba(26, 26, 26, 0.55) 100%),
+        linear-gradient(90deg, rgba(26, 26, 26, 0.45) 0%, rgba(26, 26, 26, 0.08) 55%, rgba(26, 26, 26, 0.35) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      color: var(--white);
+      max-width: 680px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .hero h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 0 0 28px;
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: rgba(255, 255, 255, 0.92);
+      max-width: 560px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    /* Sections */
+    section { padding: 88px 0; }
+
+    .section-head {
+      max-width: 640px;
+      margin-bottom: 48px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--gray);
+      font-size: 1.05rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(26, 26, 26, 0.05);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(232, 113, 60, 0.12);
+      color: var(--orange);
+      font-size: 1.35rem;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--gray);
+      font-size: 0.98rem;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .panel {
+      background: var(--white);
+      border-radius: calc(var(--radius) + 4px);
+      padding: 36px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(26, 26, 26, 0.05);
+    }
+
+    .panel h3 {
+      margin: 0 0 12px;
+      font-size: 1.5rem;
+    }
+
+    .panel p {
+      margin: 0 0 18px;
+      color: var(--gray);
+    }
+
+    .panel ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--gray);
+    }
+
+    .panel li + li { margin-top: 8px; }
+
+    .panel-accent {
+      background: linear-gradient(145deg, rgba(232, 113, 60, 0.12), rgba(232, 113, 60, 0.04));
+      border-color: rgba(232, 113, 60, 0.18);
+    }
+
+    /* CTA band */
+    .cta-band {
+      padding: 72px 0;
+    }
+
+    .cta-box {
+      background: var(--black);
+      color: var(--white);
+      border-radius: calc(var(--radius) + 8px);
+      padding: clamp(32px, 5vw, 56px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-box h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+    }
+
+    .cta-box p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.78);
+      max-width: 520px;
+    }
+
+    .store-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      min-width: 220px;
+    }
+
+    .store-badge strong {
+      display: block;
+      font-size: 1rem;
+    }
+
+    .store-badge span {
+      display: block;
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    /* Footer */
+    .site-footer {
+      padding: 40px 0 56px;
+      border-top: 1px solid rgba(26, 26, 26, 0.08);
+      background: var(--white);
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: start;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 28px;
+      font-size: 0.95rem;
+    }
+
+    .footer-links a:hover { color: var(--orange); }
+
+    .footer-meta {
+      color: var(--gray);
+      font-size: 0.9rem;
+      max-width: 360px;
+    }
+
+    .footer-meta a { color: var(--orange); }
+
+    @media (max-width: 900px) {
+      .cards,
+      .split { grid-template-columns: 1fr; }
+
+      .nav-links { display: none; }
+
+      .hero { min-height: 84vh; }
+
+      .cta-box { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/" aria-label="PalTable home">
+        <img src="assets/logo.png" alt="PalTable">
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#how-it-works">How it works</a>
+        <a href="#for-pals">For Pals</a>
+        <a href="#for-restaurants">For Restaurants</a>
+        <a href="mailto:ronakk@paltable.com">Contact</a>
+      </nav>
+      <a class="btn btn-primary" href="#download">Get the app</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Intro">
+      <div class="hero-media" aria-hidden="true">
+        <video autoplay muted loop playsinline poster="assets/hero-poster.jpg">
+          <source src="assets/hero.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <span class="eyebrow">Group dining, booked &amp; paid</span>
+        <h1>Find your next table with new pals.</h1>
+        <p>
+          PalTable connects diners with restaurants hosting curated group dining events.
+          Browse nearby experiences, reserve your seat, and share a meal with people who love good food.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#download">Get the app</a>
+          <a class="btn btn-secondary" href="#how-it-works">See how it works</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works">
+      <div class="container">
+        <div class="section-head">
+          <h2>How PalTable works</h2>
+          <p>From discovery to dinner — everything happens in one app.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">📍</div>
+            <h3>Discover events</h3>
+            <p>Browse group dining experiences at restaurants near you and pick a table that fits your vibe.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🍽️</div>
+            <h3>Book &amp; pay</h3>
+            <p>Reserve your seat, choose dishes, and pay securely — no awkward bill splitting at the end.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🤝</div>
+            <h3>Meet your pals</h3>
+            <p>Show up, laugh, eat, and connect over a shared table designed for making new friends.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="for-pals" style="padding-top: 0;">
+      <div class="container split">
+        <article class="panel panel-accent">
+          <h3>For Pals</h3>
+          <p>Discover events, book and pay with saved cards, manage bookings, and meet new people over shared tables.</p>
+          <ul>
+            <li>Map of nearby group dining events</li>
+            <li>Secure in-app payments with Stripe</li>
+            <li>Booking confirmations and reminders</li>
+          </ul>
+        </article>
+        <article class="panel" id="for-restaurants">
+          <h3>For Restaurants</h3>
+          <p>Publish events, manage guest lists, receive payouts via Stripe Connect, and grow your community.</p>
+          <ul>
+            <li>Create and schedule group dining events</li>
+            <li>Track reservations and guest details</li>
+            <li>Payouts handled through Stripe Connect</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta-band" id="download">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2>Your next great meal is one tap away.</h2>
+            <p>Download PalTable on iPhone to browse events, book your seat, and join the table.</p>
+          </div>
+          <div class="store-badge" aria-label="Coming soon on the App Store">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+            </svg>
+            <div>
+              <span>Coming soon on</span>
+              <strong>App Store</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-meta">
+        <img src="assets/logo.png" alt="PalTable" style="height: 28px; margin-bottom: 14px;">
+        <p>
+          PalTable, LLC · San Francisco, California<br>
+          Questions? <a href="mailto:ronakk@paltable.com">ronakk@paltable.com</a>
+        </p>
+        <p style="margin-top: 12px;">© 2026 PalTable, LLC. All rights reserved.</p>
+      </div>
+      <nav class="footer-links" aria-label="Legal">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+        <a href="/eula">EULA</a>
+        <a href="mailto:ronakk@paltable.com">Contact</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
