@@ -48,10 +48,26 @@
       border-bottom: 1px solid rgba(26, 26, 26, 0.06);
     }
 
+    .site-header.is-over-hero {
+      background: transparent;
+      backdrop-filter: none;
+      border-bottom: none;
+    }
+
+    .site-header.is-over-hero .nav-links a,
+    .site-header.is-over-hero .btn-secondary {
+      color: var(--white);
+    }
+
+    .site-header.is-over-hero .btn-secondary {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.22);
+    }
+
     .nav {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       gap: 24px;
       min-height: 72px;
     }
@@ -114,16 +130,34 @@
       inset: 0;
     }
 
+    .hero-media {
+      background: #141414;
+    }
+
     .hero-media video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      object-position: center center;
+    }
+
+    .hero-logo {
+      position: absolute;
+      top: clamp(20px, 4vw, 36px);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+    }
+
+    .hero-logo img {
+      height: clamp(44px, 7vw, 64px);
+      width: auto;
+      filter: drop-shadow(0 2px 16px rgba(0, 0, 0, 0.35));
     }
 
     .hero-overlay {
       background:
-        linear-gradient(180deg, rgba(250, 248, 245, 0.35) 0%, rgba(250, 248, 245, 0.15) 28%, rgba(26, 26, 26, 0.55) 100%),
-        linear-gradient(90deg, rgba(26, 26, 26, 0.45) 0%, rgba(26, 26, 26, 0.08) 55%, rgba(26, 26, 26, 0.35) 100%);
+        linear-gradient(180deg, rgba(26, 26, 26, 0.15) 0%, rgba(26, 26, 26, 0.05) 22%, rgba(26, 26, 26, 0.55) 100%);
     }
 
     .hero-content {
@@ -355,11 +389,8 @@
   </style>
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header is-over-hero" id="site-header">
     <div class="container nav">
-      <a class="brand" href="/" aria-label="PalTable home">
-        <img src="assets/logo.png" alt="PalTable">
-      </a>
       <nav class="nav-links" aria-label="Primary">
         <a href="#how-it-works">How it works</a>
         <a href="#for-pals">For Pals</a>
@@ -378,6 +409,9 @@
         </video>
       </div>
       <div class="hero-overlay" aria-hidden="true"></div>
+      <a class="hero-logo" href="/" aria-label="PalTable home">
+        <img src="assets/logo.png" alt="PalTable">
+      </a>
       <div class="container hero-content">
         <span class="eyebrow">Group dining, booked &amp; paid</span>
         <h1>Find your next table with new pals.</h1>
@@ -480,5 +514,21 @@
       </nav>
     </div>
   </footer>
+  <script>
+    (function () {
+      var header = document.getElementById('site-header');
+      var hero = document.querySelector('.hero');
+      if (!header || !hero) return;
+
+      function updateHeader() {
+        var heroBottom = hero.getBoundingClientRect().bottom;
+        header.classList.toggle('is-over-hero', heroBottom > 72);
+      }
+
+      updateHeader();
+      window.addEventListener('scroll', updateHeader, { passive: true });
+      window.addEventListener('resize', updateHeader);
+    })();
+  </script>
 </body>
 </html>
