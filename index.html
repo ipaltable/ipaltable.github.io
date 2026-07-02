@@ -289,6 +289,14 @@
 
     .panel li + li { margin-top: 8px; }
 
+    .panel-tagline {
+      margin: 24px 0 0;
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #ff7f50;
+    }
+
     .panel-accent {
       background: linear-gradient(145deg, rgba(232, 113, 60, 0.12), rgba(232, 113, 60, 0.04));
       border-color: rgba(232, 113, 60, 0.18);
@@ -394,8 +402,8 @@
     <div class="container nav">
       <nav class="nav-links" aria-label="Primary">
         <a href="#how-it-works">How it works</a>
-        <a href="#for-pals">For Pals</a>
-        <a href="#for-restaurants">For Restaurants</a>
+        <a href="#for-pals">Pals</a>
+        <a href="#for-restaurants">Restaurants</a>
         <a href="mailto:support@paltable.com">Contact</a>
       </nav>
       <a class="btn btn-primary" href="#download">Get the app</a>
@@ -456,22 +464,24 @@
     <section id="for-pals" style="padding-top: 0;">
       <div class="container split">
         <article class="panel panel-accent">
-          <h3>For Pals</h3>
+          <h3>Pals</h3>
           <p>Discover events, book and pay with saved cards, manage bookings, and meet new people over shared tables.</p>
           <ul>
             <li>Map of nearby group dining events</li>
             <li>Secure in-app payments with Stripe</li>
             <li>Booking confirmations and reminders</li>
           </ul>
+          <p class="panel-tagline">Meet. Eat. Repeat.</p>
         </article>
         <article class="panel" id="for-restaurants">
-          <h3>For Restaurants</h3>
+          <h3>Restaurants</h3>
           <p>Publish events, manage guest lists, receive payouts via Stripe Connect, and grow your community.</p>
           <ul>
             <li>Create and schedule group dining events</li>
             <li>Track reservations and guest details</li>
             <li>Payouts handled through Stripe Connect</li>
           </ul>
+          <p class="panel-tagline">Fill your unfilled Tables</p>
         </article>
       </div>
     </section>
