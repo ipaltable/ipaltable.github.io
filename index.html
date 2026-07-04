@@ -297,6 +297,25 @@
       color: #ff7f50;
     }
 
+    .panel-footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 64px;
+      flex-wrap: wrap;
+    }
+
+    .panel-footer-row .panel-tagline {
+      margin: 0;
+    }
+
+    .panel-login {
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
     .split-footer {
       margin: 28px 0 0;
       text-align: center;
@@ -489,7 +508,10 @@
             <li>Track reservations and guest details</li>
             <li>Secure Payouts</li>
           </ul>
-          <p class="panel-tagline">Fill your unfilled tables.</p>
+          <div class="panel-footer-row">
+            <p class="panel-tagline">Fill your unfilled tables.</p>
+            <a class="btn btn-primary panel-login" href="/restaurants/dashboard/login.html">Log in</a>
+          </div>
         </article>
         </div>
         <p class="split-footer">Really Social !</p>
