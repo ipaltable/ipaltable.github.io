@@ -19,6 +19,8 @@ Deploy guide: [`scripts/VERCEL_SETUP.md`](../scripts/VERCEL_SETUP.md)
 | `/terms` | `terms/index.html` |
 | `/eula` | `eula/index.html` |
 | `/restaurants` | `restaurants/index.html` |
+| `/login` | `login/index.html` (mock restaurant portal sign-in) |
+| `/restaurants/dashboard/*` | Static mock portal (dashboard, menu, events, …) |
 
 ## Workflow
 

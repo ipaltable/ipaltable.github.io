@@ -1,4 +1,16 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/dashboard",
+      "destination": "/restaurants/dashboard/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/dashboard/:path*",
+      "destination": "/restaurants/dashboard/:path*",
+      "permanent": false
+    }
+  ]
 }
