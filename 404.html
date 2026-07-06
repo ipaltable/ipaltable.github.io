@@ -3,19 +3,6 @@
 <head>
   <meta charset="utf-8">
   <title>PalTable</title>
-  <script>
-    (function () {
-      var path = location.pathname.replace(/\/$/, "") || "/";
-      var redirects = {
-        "/login": "/restaurants/dashboard/login.html",
-        "/dashboard": "/restaurants/dashboard/index.html"
-      };
-      if (redirects[path]) {
-        location.replace(redirects[path]);
-        return;
-      }
-    })();
-  </script>
 </head>
 <body>
   <p>Page not found. <a href="/">Back to PalTable</a></p>
