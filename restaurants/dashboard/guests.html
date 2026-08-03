@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Guests — PalTable Restaurant Portal</title>
+  <link rel="icon" href="/assets/favicon.png" type="image/png">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand"><a href="/"><img src="/assets/logo_transparent.png" alt="PalTable"></a><p>Restaurant portal</p></div>
+      <nav class="sidebar-nav" aria-label="Main">
+        <a class="nav-item" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Dashboard</a>
+        <a class="nav-item" href="menu.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Menu</a>
+        <a class="nav-item" href="events.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Events</a>
+        <a class="nav-item active" href="guests.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Guests</a>
+        <a class="nav-item" href="messages.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Messages</a>
+        <a class="nav-item" href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a>
+      </nav>
+      <div class="sidebar-footer">North Beach Social Kitchen<br><a href="login.html" style="color:#ff7f50;">Sign out</a></div>
+    </aside>
+    <div class="main-wrap">
+      <header class="topbar">
+        <div class="topbar-left"><button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu">☰</button><div><h2>Guests</h2><p class="meta">North Beach Social Kitchen · San Francisco</p></div></div>
+        <div class="topbar-right"><button class="icon-btn" type="button" aria-label="Notifications"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="dot"></span></button><div class="avatar">MC</div></div>
+      </header>
+      <main class="content">
+        <div class="preview-banner"><strong>Preview mock</strong> — static demo. No data is saved.</div>
+        <div class="page-head">
+          <div><h1>Guest list</h1><p>Confirmed bookings for <strong>Thursday Community Table</strong></p></div>
+          <button class="btn btn-secondary" type="button">Export CSV</button>
+        </div>
+        <div class="toolbar"><select class="search-input" aria-label="Select event"><option>Thursday Community Table — Jul 10</option><option>Slow Night Social — Jul 15</option></select></div>
+        <div class="card">
+          <div class="card-body table-wrap">
+            <table class="data">
+              <thead><tr><th>Guest</th><th>Party</th><th>Dishes</th><th>Dietary</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                <tr><td><strong>Alex Morgan</strong><br><span style="color:#8a8a8a;font-size:0.82rem;">alex.m@email.com</span></td><td>1</td><td>Margherita, Salad</td><td>Vegetarian</td><td><span class="badge badge-green">Confirmed</span></td><td class="row-actions"><a class="btn btn-ghost" href="messages.html">Message</a></td></tr>
+                <tr><td><strong>Jordan Lee</strong><br><span style="color:#8a8a8a;font-size:0.82rem;">jordan@email.com</span></td><td>1</td><td>Pappardelle</td><td>—</td><td><span class="badge badge-green">Confirmed</span></td><td class="row-actions"><a class="btn btn-ghost" href="messages.html">Message</a></td></tr>
+                <tr><td><strong>Sam Rivera</strong><br><span style="color:#8a8a8a;font-size:0.82rem;">sam.r@email.com</span></td><td>2</td><td>Margherita ×2</td><td>Gluten-free</td><td><span class="badge badge-coral">Checked in</span></td><td class="row-actions"><a class="btn btn-ghost" href="messages.html">Message</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
